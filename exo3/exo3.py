@@ -36,8 +36,41 @@ Sortie
 La chaîne OK si le backlog est vide. Sinon retourner la chaîne KO.
 
 """
-
+import unittest
 
 def processLines(lines) -> str:
-    # Implementer votre réponse ici
-    return "OK"
+    # Lire le nombre de sprints et le nombre de tâches initiales
+    N = int(lines[0])
+    T = int(lines[1])
+
+    # On parcourt les lignes correspondant aux réunions de sprint
+    for i in range(2, N + 2):
+        V, U = map(int, lines[i].split())  # Lire V (validées) et U (ajoutées/supprimées)
+        T -= V  # Soustraire le nombre de tâches validées du backlog
+        T += U  # Ajouter ou retirer des tâches selon U
+
+    # Si le backlog est vide, on retourne "OK", sinon "KO"
+    return "OK" if T == 0 else "KO"
+
+
+class TestExo3(unittest.TestCase):
+
+    def test_input_1(self):
+        with open("sample/input1.txt") as input1:
+            lines = input1.readlines()
+
+        with open("sample/output1.txt") as output1:
+            expected = output1.read()
+
+        self.assertEqual(expected.strip(), processLines([line.strip() for line in lines]))
+
+    def test_input_2(self):
+        with open("sample/input2.txt") as input2:
+            lines = input2.readlines()
+
+        with open("sample/output2.txt") as output2:
+            expected = output2.read()
+
+        self.assertEqual(expected.strip(), processLines([line.strip() for line in lines]))
+
+
