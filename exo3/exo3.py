@@ -74,3 +74,5 @@ class TestExo3(unittest.TestCase):
         self.assertEqual(expected.strip(), processLines([line.strip() for line in lines]))
 
 
+if __name__ == "__main__":
+    unittest.main()
