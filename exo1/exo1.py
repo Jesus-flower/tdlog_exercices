@@ -23,3 +23,7 @@ class Exo1Test(unittest.TestCase):
 
         self.assertEqual(20, item.weight)
         self.assertEqual(10, item.price)
+
+# Si vous exécutez ce fichier directement, cela exécutera les tests
+if __name__ == '__main__':
+    unittest.main()
